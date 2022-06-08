@@ -33,7 +33,7 @@ parser.add_argument('--topk', type=int, default=30, help='Random seed.')
 
 def inference():
     args = parser.parse_args()        
-    path = '/opt/ml/recipe/recipe_data'
+    path = '/HGAT/recipe_data'
 
     recipe_ingredient = pd.read_csv(os.path.join(path, '레시피_재료_내용_raw.csv'))
     recipe_ingredient.dropna(subset=['재료_아이디'],inplace=True)
