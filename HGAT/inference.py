@@ -28,6 +28,7 @@ parser.add_argument('--batch_size', type=int, default=128, help='Random seed.')
 parser.add_argument('--load_interaction', type=bool, default=True, help='Random seed.')
 parser.add_argument('--device', type=str, default='cuda', help='Disables CUDA training.')
 parser.add_argument('--u_idx', type=int, default=0, help='Random seed.')
+parser.add_argument('--r_idx', type=list, default=[], help='Random seed.')
 parser.add_argument('--topk', type=int, default=30, help='Random seed.')
 
 
@@ -62,8 +63,6 @@ def inference():
                 interaction[u_idx][r_idx] = 1
         torch.save(interaction, '/HGAT/data/interaction.pt') 
 
-        
-
     dataset = recipe_dataset( train,test, recipe_ingredient ,args.user_dimension)
     users, recipes, ings = dataset.get_user_recipe_ing()
 
@@ -86,6 +85,7 @@ def inference():
     recipe_emb = dataset.recipe_embedding.weight.to(args.device)
     ing_emb = dataset.ing_embedding.weight.to(args.device)
 
+    interaction[args.u_idx][args.r_idx] = 1
 
     pred = model(user_emb[[args.u_idx]],[recipe_emb], [interaction[args.u_idx]])
     pred = F.log_softmax(pred, dim=0)
