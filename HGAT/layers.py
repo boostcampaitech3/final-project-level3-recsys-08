@@ -2,7 +2,6 @@ import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from zmq import device
 
 class NodeAttentionLayer(nn.Module):
     def __init__(self, t_in_features, o_in_features, out_features, nd_dropout, alpha, device, concat=True):
