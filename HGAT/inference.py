@@ -12,7 +12,7 @@ from torch.utils.data import BatchSampler, RandomSampler
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--seed', type=int, default=42, help='Random seed.')
-parser.add_argument('--user_dimension', type=int, default=32, help='Random seed.')
+parser.add_argument('--user_dimension', type=int, default=16, help='Random seed.')
 parser.add_argument('--recipe_dimension', type=int, default=512, help='Random seed.')
 parser.add_argument('--ingredient_dimension', type=int, default=512, help='Random seed.')
 parser.add_argument('--hidden_unit', type=int, default=4, help='Random seed.')
@@ -26,10 +26,10 @@ parser.add_argument('--epochs', type=int, default=50, help='Random seed.')
 parser.add_argument('--batch_size', type=int, default=128, help='Random seed.')
 
 parser.add_argument('--load_interaction', type=bool, default=True, help='Random seed.')
-parser.add_argument('--device', type=str, default='cuda', help='Disables CUDA training.')
-parser.add_argument('--u_idx', type=int, default=0, help='Random seed.')
-parser.add_argument('--r_idx', type=list, default=[], help='Random seed.')
-parser.add_argument('--topk', type=int, default=30, help='Random seed.')
+parser.add_argument('--device', type=str, default='cpu', help='Disables CUDA training.')
+parser.add_argument('--u_idx', type=int, default=0, help='Random seed.') # 없는 index 면 error?
+parser.add_argument('--r_idx', type=str, default='', help='Random seed.') # _ 로 나뉜거 ?
+parser.add_argument('--topk', type=int, default=20, help='Random seed.')
 
 
 def inference():
@@ -41,12 +41,6 @@ def inference():
 
     train = pd.read_csv(os.path.join(path, 'train셋(73609개-220603_192931).csv'))
     test = pd.read_csv(os.path.join(path, 'test셋(4422개-220603_192931).csv'))
-
-
-    user_rel_matrix, recipe_rel_matrix = torch.load('/HGAT/data/1.pt'),[  
-                                                                        torch.load('/HGAT/data/2.pt'), 
-                                                                        torch.load('/HGAT/data/3.pt'), 
-                                                                        torch.load('/HGAT/data/4.pt')]
 
     if args.load_interaction:
         interaction = torch.load('/HGAT/data/interaction.pt').to(args.device)
@@ -84,14 +78,28 @@ def inference():
     user_emb = dataset.user_embedding.weight.to(args.device)
     recipe_emb = dataset.recipe_embedding.weight.to(args.device)
     ing_emb = dataset.ing_embedding.weight.to(args.device)
+    
+    ################ 여기서 까지 띄워놓고  #######################3
 
-    interaction[args.u_idx][args.r_idx] = 1
+    ############### 여기서 부터 반복해주세요 #############3    
+    if args.u_idx > user_emb.shape[0]:
+        print([])
+        return torch.tensor([])    
+    
+    user_inter = interaction[args.u_idx]
+
+    if args.r_idx == '':
+        args.r_idx = []
+    else:
+        args.r_idx = list(map(int,args.r_idx.split('_')))
+        user_inter[args.r_idx] = 1
 
     pred = model(user_emb[[args.u_idx]],[recipe_emb], [interaction[args.u_idx]])
     pred = F.log_softmax(pred, dim=0)
     pred[interaction[args.u_idx]>0] = -1e6
     
-    print(pred.to('cpu').topk(args.topk))
+    print(pred.topk(args.topk))
+    return pred.to('cpu').topk(args.topk)
 
 if __name__ == '__main__':
     inference()
