@@ -23,9 +23,9 @@ class NodeAttentionLayer(nn.Module):
 
         self.leakyrelu = nn.LeakyReLU(self.alpha).to(self.device)
 
-    def forward(self, t_input, o_inout, adj):
+    def forward(self, t_input, o_input, adj):
         h_t = torch.mm(t_input, self.W_t)
-        h_o = torch.mm(o_inout, self.W_o)
+        h_o = torch.mm(o_input, self.W_o)
         N_t = h_t.size()[0]
         N_o = h_o.size()[0]        
         
@@ -45,7 +45,7 @@ class NodeAttentionLayer(nn.Module):
             return h_prime
 
     def __repr__(self):
-        return self.__class__.__name__ + ' (' + str(self.in_features) + ' -> ' + str(self.out_features) + ')'
+        return self.__class__.__name__ + ' (' + str(self.t_in_features) + ' -> ' + str(self.out_features) + ')'
 
 class RelationAttentionLayer(nn.Module):
 
