@@ -1,0 +1,144 @@
+
+ul, li, div, h1, h2, h3, h4, h5, h6, p {            
+    font-family: 'Nanum Gothic', sans-serif!important;
+    /* font-family: 'Noto Sans KR', sans-serif!important; */
+    }
+
+
+.landing_background-1 {
+    height: 700px;
+    width: 100%;
+    position: relative;
+
+    background: url('/static/main_page/images/back4.jpg') center center no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size : cover;
+    -o-background-size: cover;
+}
+
+.landing_background-2 {
+    height: 600px;
+    
+    position: relative;
+
+    background: url('/static/main_page/images/back5.jpg') center center no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size : cover;
+    -o-background-size: cover;    
+}
+
+.landing-title {
+    width: 100%;
+    font-size: 43px!important;
+    text-align: start;
+    color: black;
+    padding-top: 160px;
+    padding-left: 100px;
+    font-weight: 800;
+    line-height: 80px;
+}
+
+.btn-ing {
+    font-size: 20px!important;
+    margin-top: 20px;
+    margin-left: 100px;
+    color: black!important;
+    font-weight: 700!important;
+    background-color: white!important;
+    border-color:black!important;
+    border-radius: 0!important;
+    border-width: 1.5px!important;
+}
+
+.recipe-rec {    
+    width: 1600px!important;
+}
+
+.recipe-rec-title {
+    font-size: 35px;
+    margin-top: 100px;
+    margin-bottom: 40px;
+    text-align: center;
+    font-weight: 700;
+}
+
+/* .line {
+    display: flex;
+    flex-basis: 100%;
+    align-items: center;       
+  } */
+
+/* .line::before, .line::after {
+    content: "";
+    flex-grow: 1;
+    background: rgba(0, 0, 0, 0.35);
+    height: 1.5px;
+    font-size: 0px;
+    line-height: 0px;
+    margin: 0px 16px;
+  } */
+
+.recipe-rec-cards {
+    margin-top: 40px;
+    margin-bottom: 70px;
+}
+
+.recipe-rec-card {        
+    margin-left: auto;
+    margin-right: auto;
+    border: 0px!important;    
+}
+
+.card-img {        
+    border-radius: 0px!important;
+}
+
+.landing-card-title {
+    font-size: 25px!important;
+    font-weight: 800;
+    text-align: center;
+    margin-top: 40px;
+    margin-left: 40px;
+    margin-right: 40px;
+
+    display: -webkit-box!important;
+    -webkit-box-orient: vertical!important;
+    -webkit-line-clamp : 1!important;
+    overflow: hidden!important;
+    
+}
+
+.landing-card-text { 
+    margin-top: 15px;
+    margin-bottom: 15px;
+    
+    font-size: 20px;
+    line-height: 38px!important;
+    font-weight: 500;
+    display: -webkit-box!important;
+    -webkit-box-orient: vertical!important;
+    -webkit-line-clamp : 2!important;
+    overflow: hidden!important;
+}
+
+.landing-card-grade, .landing-card-serving, .landing-card-time {
+    margin-top: 10px;
+    font-weight: 600;
+    font-size: 18px!important;
+}
+
+.recipe-button {     
+    border-radius: 0%!important;
+    border-color: rgb(28, 28, 28)!important;
+    margin-top: 20px;    
+    background-color: white!important;
+    font-weight: 700!important;
+}
+
+.recipe-img { 
+    object-fit : cover;
+    height: 300px!important;
+}
+

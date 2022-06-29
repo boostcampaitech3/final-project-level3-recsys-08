@@ -1,0 +1,45 @@
+{% load socialaccount %}
+
+<nav class="navbar nav-1 navbar-expand-lg">
+    <div class="container-fluid">
+    <a class="navbar-brand" href="/">COOKPang</a>
+    <!-- <ul class="navbar-nav">
+      <li class="nav-item nav-btn">
+        <a class="text-decoration-none text-reset" href="/search_ing">재료 검색</a>
+      </li>
+      <li class="nav-item nav-btn">
+        레시피 검색
+      </li>
+      <li class="nav-item nav-btn">
+        튜토리얼
+      </li>
+    </ul> -->
+    <ul class="navbar-nav me-5">            
+      {% if user.is_authenticated %}
+      <li class="nav-item">        
+        <a role="'button" class="nav-link" href="#">{{user.username}} 님</a>
+      </li>             
+      <li class="nav-item">        
+        <form method="post" action="{% url 'account_logout' %}">
+          {% csrf_token %}
+          <button class="login-button" type="submit">로그아웃</button>
+        </form>
+      </li> 
+      {% else %}      
+        <!-- <li class="nav-item">
+          <a class="nav-link" href="#">게스트 모드</a>
+        </li> -->
+      <li class="nav-item">
+        <form action="{% provider_login_url 'google' %}" method="post">
+          {% csrf_token %}
+          <button class="login-button" type="submit">로그인</button>
+        </form>        
+      </li>
+      {% endif %}
+
+    </ul>      
+  </div>
+</nav>
+<nav class="navbar nav-2 navbar-expand-lg">
+
+</nav>

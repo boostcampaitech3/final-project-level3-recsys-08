@@ -1,0 +1,159 @@
+{% extends 'main_page/base.html' %}
+{% block main_area %}
+<div class="detail-background"><img src=""></div>
+<div class="recipe-detail-container container-fluid">
+    <div class="col-9 card recipe-detail-card" id="printableArea">
+        <div class="detail-container">
+            <input class="btn btn-down btn-primary float-end" type="button" onclick="printDiv('printableArea')" value="레시피 내보내기" />
+            <img src='{{recipe.img_url}}' class="card-img recipe-detail-img" alt="..."> 
+            <h3 class="card-title recipe-detail-title">
+                {{ recipe.title }}    
+            </h3>    
+            <p class="recipe-detail-hook">
+                {{ recipe.hook }}
+            </p>
+            <hr class="line">
+            <div class="card-text recipe-detail-text">
+                <div class="detail-card-tags d-flex flex-cloumn justify-content-around">
+                    <div class="landing-card-grade">
+                        <h5 class="detail-tag-title"><i class="fa-solid fa-book"></i> 난이도<h5>
+                        <h5 class="detail-tag-text" style="text-align: center;">{{ recipe.grade }}</h5>
+                    </div> 
+                    <div class="detail-card-serving">
+                        <h5 class="detail-tag-title"><i class="fa-solid fa-people-group"></i> Serving</h5>
+                        <h5 class="detail-tag-text" style="text-align: center;">{{ recipe.serving }}</h5>
+                    </div>
+                    <div class="detail-card-time">
+                        <h5 class="detail-tag-title"><i class="fa-solid fa-hourglass"></i> 조리시간</h5>
+                        <h5 class="detail-tag-text" style="text-align: center;">{{ recipe.elapsed_time }}</h5> 
+                    </div>                    
+                </div> 
+                <hr class="line">
+                <div class="landing-card-tags d-flex flex-cloumn justify-content-around">
+                    <div class="detail-cat">
+                        <h5 class="detail-tag-title" style="text-align: center;"><i class="fa-solid fa-bowl-food"></i> 종류</h5>
+                        <h5 class="detail-tag-text" style="text-align: center;">{{ recipe.category1 }}</h5>
+                    </div>
+                    <div class="detail-cat">
+                        <h5 class="detail-tag-title" style="text-align: center;"><i class="fa-solid fa-utensils"></i> 상황</h5>
+                        <h5 class="detail-tag-text" style="text-align: center;">{{ recipe.category2 }}</h5>
+                    </div>
+                    <div class="detail-cat">
+                        <h5 class="detail-tag-title" style="text-align: center;"><i class="fa-solid fa-carrot"></i> 주재료</h5>
+                        <h5 class="detail-tag-text" style="text-align: center;">{{ recipe.category3 }}</h5>
+                    </div>
+                    <div class="detail-cat">
+                        <h5 class="detail-tag-title" style="text-align: center;"><i class="fa-solid fa-blender"></i> 방법</h5>
+                        <h5 class="detail-tag-text" style="text-align: center;">{{ recipe.category4 }}</h5>
+                    </div>                                    
+                </div>
+                <hr class="line">
+                
+                <div>{{ recipe.get_content_markdown | safe }}</div> 
+            </div>
+        </div>
+    </div>
+    <div class="star-container card">
+        <p class="star-label">"{{recipe.title}}" 레시피의 별점을 매겨주세요!</p>
+        <form name="myform" id="myform" method="post" action="./save">            
+            <fieldset>                
+                <input type="radio" name="rating" value="5" id="rate1"><label for="rate1">⭐</label>
+                <input type="radio" name="rating" value="4" id="rate2"><label for="rate2">⭐</label>
+                <input type="radio" name="rating" value="3" id="rate3"><label for="rate3">⭐</label>
+                <input type="radio" name="rating" value="2" id="rate4"><label for="rate4">⭐</label>
+                <input type="radio" name="rating" value="1" id="rate5"><label for="rate5">⭐</label>
+            </fieldset>
+        </form>
+    </div>
+    <hr class="my-3">
+    <div class="sim-container">        
+        <h3 class="sim-head"> 지금 보시는 레시피와 비슷해요! </h3>
+        <div class="d-flex flex-column">
+
+            <div class="sim-cards d-flex flex-row">
+            {% for s in similar %}
+            {% if forloop.counter <= 3 %}            
+                <a href="{{s.get_absolute_url}}" class="text-decoration-none text-reset">
+                    <div class="sim-card card">
+                        <img class="sim-img" src='{{s.img_url}}'>                        
+                        <p class="card-title sim-title">{{s.title}}</p>        
+                        <div class="landing-card-tags d-flex flex-cloumn justify-content-around">
+                            <div class="landing-card-grade me-auto"><i class="fa-solid fa-book"></i> {{ s.grade }}</div>                        
+                            <div class="landing-card-serving"><i class="fa-solid fa-people-group"></i> {{ s.serving }}</div>
+                            <div class="landing-card-time ms-auto"><i class="fa-solid fa-hourglass"></i> {{ s.elapsed_time }}</div>
+                        </div> 
+                        <hr>
+                    </div>
+                </a>                            
+            {% endif %}          
+            {% endfor %}
+            
+            </div>  
+            
+            <div class="sim-cards d-flex flex-row">
+            {% for s in similar %}
+            {% if forloop.counter > 3 %}
+            {% if forloop.counter <= 6 %}
+                <a href="{{s.get_absolute_url}}" class="text-decoration-none text-reset">
+                    <div class="sim-card card">
+                        <img class="sim-img" src='{{s.img_url}}'>
+                        <p class="sim-title">{{s.title}}</p>
+                        <div class="landing-card-tags d-flex flex-cloumn justify-content-around">
+                            <div class="landing-card-grade me-auto"><i class="fa-solid fa-book"></i> {{ s.grade }}</div>                        
+                            <div class="landing-card-serving"><i class="fa-solid fa-people-group"></i> {{ s.serving }}</div>
+                            <div class="landing-card-time ms-auto"><i class="fa-solid fa-hourglass"></i> {{ s.elapsed_time }}</div>
+                        </div>    
+                        <hr>
+                    </div>
+                </a>                            
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+            </div>
+            
+            <div class="sim-cards d-flex flex-row">
+            {% for s in similar %}
+            {% if forloop.counter > 6 %}
+            {% if forloop.counter <= 9 %}
+                <a href="{{s.get_absolute_url}}" class="text-decoration-none text-reset">
+                    <div class="sim-card card">
+                        <img class="sim-img" src='{{s.img_url}}'>
+                        <p class="sim-title">{{s.title}}</p>
+                        <div class="landing-card-tags d-flex flex-cloumn justify-content-around">
+                            <div class="landing-card-grade me-auto"><i class="fa-solid fa-book"></i> {{ s.grade }}</div>                        
+                            <div class="landing-card-serving"><i class="fa-solid fa-people-group"></i> {{ s.serving }}</div>
+                            <div class="landing-card-time ms-auto"><i class="fa-solid fa-hourglass"></i> {{ s.elapsed_time }}</div>
+                        </div> 
+                        <hr>
+                    </div>
+                </a>                            
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+            </div>
+            
+            <div class="sim-cards d-flex flex-row">
+                {% for s in similar %}
+                {% if forloop.counter > 9 %}
+                {% if forloop.counter <= 12 %}
+                    <a href="{{s.get_absolute_url}}" class="text-decoration-none text-reset">
+                        <div class="sim-card card">
+                            <img class="sim-img" src='{{s.img_url}}'>
+                            <p class="sim-title">{{s.title}}</p>
+                            <div class="landing-card-tags d-flex flex-cloumn justify-content-around">
+                                <div class="landing-card-grade"><i class="fa-solid fa-book"></i> {{ s.grade }}</div>                        
+                                <div class="landing-card-serving"><i class="fa-solid fa-people-group"></i> {{ s.serving }}</div>
+                                <div class="landing-card-time"><i class="fa-solid fa-hourglass"></i> {{ s.elapsed_time }}</div>
+                            </div> 
+                            <hr>
+                        </div>
+                    </a>                            
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

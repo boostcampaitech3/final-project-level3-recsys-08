@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+{% load static %}
+{% load socialaccount %}
+<html lang="ko">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
+    <meta charset="UTF-8">
+
+    <title>부덕이의 레피시추천</title>
+
+    <link rel="stylesheet" href="{% static 'main_page/css/landing.css' %}" media="screen">
+    <link rel="stylesheet" href="{% static 'main_page/css/navbar.css' %}" media="screen">
+    <link rel="stylesheet" href="{% static 'single_pages/css/ingredient_list.css' %}" media="screen">
+
+    <!-- 부트스트랩 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <!-- 나눔 고딕-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+    <!-- 나눔 산스 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- fontawesome -->
+    <script src="https://kit.fontawesome.com/27fb639ddc.js" crossorigin="anonymous"></script>
+    
+</head>
+    {% include 'main_page/navbar.html' %}
+</head>    
+<body>    
+    {% if user.is_authenticated %}
+    <div class="ing-area-title"><h4 style="font-weight: 600;">{{user.username}} 님의 바구니</h4></div>
+
+    <div class="container-fluid col-7">
+        <div class="ing-area card d-flex flex-column">
+            {% for ingredient in ingredients %} 
+                <div class="d-flex flex-row">
+                    {% for ingreds in ingredient %}                     
+                        <div class="ingreds btn btn-danger col-2">{{ ingreds.ingred }} {{ ingreds.count }}개</div>    
+                {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="ing-area-title"><h4 style="font-weight: 600;">{{user.username}} 님을 위한 맞춤 추천 레시피!</h4></div>
+
+    <div class="recipe-rec container-fluid">
+        <div class="recipe-rec-title line"> 비오는 날 먹기 좋은 파전! </div>
+        <div class="recipe-rec-cards container-fluid d-flex flex-row">
+            {% for recipe in recipes %}
+            <div class="col-4">
+                <div class="recipe-rec-card card col-11">                                      
+                    <img src='{{recipe.head_image.url}}' class="card-img" alt="..."> 
+                <div class="landing-card-title">{{ recipe.title}}</div>
+                <div class="landing-card-text">{{ recipe.content}}</div>
+                <a class="btn btn-light recipe-button" href="{{recipe.get_absolute_url}}" role="button">레시피 보기 <i class="fa-solid fa-utensils"></i></a>
+                </div>                                        
+            </div>         
+            {% endfor %}             
+        </div>
+    </div>
+    
+
+    {% else %}
+    <h1>회원가입을 먼저 시행해주세요!</h1>
+    {% endif %}
+</body>
+</html>

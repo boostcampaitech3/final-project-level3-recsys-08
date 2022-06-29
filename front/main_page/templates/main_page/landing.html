@@ -1,0 +1,72 @@
+{% extends 'main_page/base.html' %}
+{% block main_area %}
+        <div class="d-flex flex-cloumn">
+            <div class="landing_background-1 col-8"></div>
+            <div class=col-4>
+                <p class="landing-title">COOKPang 만의 <br> 레시피 추천 서비스를 <br> 받아보세요</p>
+                <a class="btn btn-primary btn-ing" href="/search_recipe"><i class="fa-solid fa-carrot"></i> 레시피 검색 하기</a>
+            </div>            
+        </div>
+        <div class="d-flex flex-cloumn">
+            <div class=col-8>
+                <p class="landing-title">가진 재료를 검색 하면 <br> 더 좋은 추천을 받을 수 있어요</p>
+                <a class="btn btn-primary btn-ing" href="/search_ing"><i class="fa-solid fa-carrot"></i> 재료 검색 하기</a>
+            </div>            
+            <div class="landing_background-2 col-4"></div>
+        </div>
+        {% if user.is_authenticated %}
+        <div class="recipe-rec container-fluid">
+            <div class="recipe-rec-title line"> '{{user}}'님을 위한 레시피! </div>            
+            {% for recipes in popular %}
+            <div class="recipe-rec-cards container-fluid d-flex flex-row">                
+                {% for recipe in recipes %}
+                <div class="col-4">
+                    <a href="{{recipe.get_absolute_url}}" class="text-decoration-none text-reset">
+                    <div class="recipe-rec-card card col-10">
+                    <img class="card-img" src='{{recipe.img_url}}' class="card-img" alt="..."> 
+                    <div class="landing-card-title">{{ recipe.title}}</div>                    
+                    <div class="landing-card-text">{{ recipe.hook}}</div>                    
+                    <div class="landing-card-tags d-flex flex-cloumns">
+                        <div class="landing-card-grade me-auto"><i class="fa-solid fa-book"></i> {{ recipe.grade }}</div>                        
+                        <div class="landing-card-serving"><i class="fa-solid fa-people-group"></i> {{ recipe.serving }}</div>
+                        <div class="landing-card-time ms-auto"><i class="fa-solid fa-hourglass"></i> {{ recipe.elapsed_time }}</div>
+                    </div>
+                    </a>
+                    <!-- <a class="btn btn-light recipe-button" href="{{recipe.get_absolute_url}}" role="button">레시피 보기 <i class="fa-solid fa-utensils"></i></a> -->
+                    </div>                    
+                </div>
+                
+                {% endfor %}                
+            </div> 
+            {% endfor %}
+        </div>        
+        
+        {% else %}
+        
+        <div class="recipe-rec container-fluid">
+            <div class="recipe-rec-title line"> COOK 인기 레시피 </div>            
+            {% for recipes in popular %}
+            <div class="recipe-rec-cards container-fluid d-flex flex-row">                
+                {% for recipe in recipes %}
+                <div class="col-4">
+                    <a href="{{recipe.get_absolute_url}}" class="text-decoration-none text-reset">
+                    <div class="recipe-rec-card card col-10">       
+                    <img class="card-img recipe-img" src='{{recipe.img_url}}' class="card-img" alt="..."> 
+                    <div class="landing-card-title">{{ recipe.title}}</div>                    
+                    <div class="landing-card-text">{{ recipe.hook}}</div>                    
+                    <div class="landing-card-tags d-flex flex-cloumns">
+                        <div class="landing-card-grade me-auto"><i class="fa-solid fa-book"></i> {{ recipe.grade }}</div>                        
+                        <div class="landing-card-serving"><i class="fa-solid fa-people-group"></i> {{ recipe.serving }}</div>
+                        <div class="landing-card-time ms-auto"><i class="fa-solid fa-hourglass"></i> {{ recipe.elapsed_time }}</div>                        
+                    </div>                                        
+                    
+                    <!-- <a class="btn btn-light recipe-button" href="{{recipe.get_absolute_url}}" role="button">레시피 보기 <i class="fa-solid fa-utensils"></i></a>     -->
+                    </div>                                         
+                    </a>                    
+                </div>
+                {% endfor %}                
+            </div> 
+            {% endfor %}
+        </div>        
+        {% endif %}    
+{% endblock %}    

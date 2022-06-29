@@ -1,0 +1,104 @@
+ul, li, div, h1, h2, h3, h4, h5, h6, p {            
+    font-family: 'Nanum Gothic', sans-serif!important;
+    /* font-family: 'Noto Sans KR', sans-serif!important; */
+    }
+
+.serach-ing-background{
+    height: 1000px;    
+    position: relative;
+
+    background: url('/static/main_page/images/search_ing.jpg') center center no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size : cover;
+    -o-background-size: cover;
+}
+
+.selectize-input {
+    margin-top: 200px;
+    border-color: black!important;    
+    width: 550px!important;
+    /* height: 46px!important; */
+    font-size: 17px!important;
+    line-height: 40px!important;
+    vertical-align: middle!important;
+    font-weight: 600;
+}
+
+.item {
+    background-color: rgb(252, 190, 190)!important;
+}
+
+
+
+.sub-btn{    
+    background-color: transparent!important;
+    border: 0;    
+    height: 40px!important;
+    margin-top: 205px;
+}
+
+.icon {    
+    
+    padding-left: 20px;
+    font-size: 28px!important;
+    color: black!important;
+}
+
+.search-container{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.search-bar-ing {    
+    border-color: black!important;
+}
+
+.ings-card{
+    margin-top: 50px;
+    min-height: 100px;
+}
+
+.ing-card{
+    margin-left: 80px!important;    
+    border: 0px!important;    
+}
+
+.ing-title{
+    font-weight: 700;
+    padding-left: 30px;
+    font-size: 22px;    
+}
+
+.ing-hook {
+    padding-top: 18px;
+    padding-left: 30px;
+    font-size: 17px;
+    line-height: 30px;
+    display: -webkit-box!important;
+    -webkit-box-orient: vertical!important;
+    -webkit-line-clamp : 3!important;
+    overflow: hidden!important;
+}
+
+
+.ing-card-grade, .ing-card-serving, .ing-card-time {    
+    text-align: center;
+    font-weight: 600;
+    padding-top: 20px;
+    font-size: 15px;
+
+}
+
+
+.ing-img{
+    width :200px!important;
+    height:200px!important;
+    object-fit : cover;
+}
+
+.inncard-con{
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+}

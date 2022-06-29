@@ -1,0 +1,73 @@
+.nav-1 {
+    background-color: rgb(255, 255, 255);
+    height : 75px!important;
+}
+
+.nav-2 {
+    background-color: rgb(247, 139, 139);
+    height : 75px!important;    
+}
+
+.navbar-brand { 
+    color: rgb(0, 0, 0)!important; 
+    font-size: 28px!important;
+    font-weight: 800!important;
+    margin-left: 60px;
+    
+}
+
+.nav-btn {
+    font-size: 20px;
+    margin-left: 30px;
+    margin-right: 30px;
+    font-weight: 700;
+}
+
+.navbar-nav { 
+    margin-left: 150px!important;
+}
+
+.nav-link {
+    color: rgb(0, 0, 0)!important;
+    font-weight: 600!important;
+    font-size: 19px!important;
+    margin-left: 10px!important;
+}
+
+.nav-search { 
+    margin-left: auto;
+    margin-right: auto;    
+}
+
+.search-bar {
+    border-color: white!important;
+    border-radius: 3px!important;
+    height: 45px;
+        
+}
+
+.login-button {
+    background-color: transparent;
+    border: 0px;
+    color: rgb(0, 0, 0)!important;  
+    font-weight: 600!important;
+    font-size: 19px!important;
+    margin-left: 10px!important;    
+    padding-top: 0.5rem!important;
+    
+}
+
+.footer {              
+    height: 100px!important;
+    margin-top: 300px;
+    background-color : rgb(248, 120, 105);;
+}
+
+.footer-text {
+    font-size: 25px;
+    font-weight: 600;
+    color: white;    
+    text-align: center;    
+    line-height: 100px!important;
+
+}

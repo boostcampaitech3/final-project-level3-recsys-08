@@ -1,0 +1,31 @@
+{% extends 'main_page/base_search.html' %}
+{% block main_area %}
+<div class="d-flex">    
+    
+    <div class="search-container">        
+        <h2 style="text-align:center; font-weight: 700;" class="my-5">"{{search_keyword}}"에 대한 검색 결과 입니다!</h3>
+        <p style="text-align: center;">총 {{n_recipes}}개 레시피, 검색결과 : {{time}} 초 소요</p>
+        {% for recipe in recipes %}        
+        <div class="card ing-card">            
+            <hr class="mb-5">
+            <a href="{{recipe.get_absolute_url}}" class="text-decoration-none text-reset">
+            <div class="d-flex flex-cloumn">
+                <img class="ing-img" src='{{recipe.img_url}}'>
+                <div class="d-flex flex-row container">
+                    <div class="col-6">
+                        <div class="ing-title">{{recipe.title}}</div>
+                        <div class="ing-hook">{{recipe.hook}}</div>
+                    </div>
+                    <div class="col-6 ing-card-tags d-flex flex-column">
+                        <div class="ing-card-grade"><i class="fa-solid fa-book"></i> {{ recipe.grade }}</div>                        
+                        <div class="ing-card-serving"><i class="fa-solid fa-people-group"></i> {{ recipe.serving }}</div>
+                        <div class="ing-card-time"><i class="fa-solid fa-hourglass"></i> {{ recipe.elapsed_time }}</div>
+                    </div>
+                </div>
+            </div>
+            </a>
+        </div>        
+        {% endfor %}
+    </div>
+</div>
+{% endblock %} 

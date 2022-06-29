@@ -1,0 +1,24 @@
+.ing-area-title{
+    margin-top: 100px;
+    margin-bottom: 50px;
+    margin-left: auto;
+    margin-right:auto;
+    width: 60%;
+}
+
+.ing-area { 
+    border-color: black!important;   
+    margin-left: auto;
+    margin-right: auto;
+    padding: 30px;
+}
+
+.ingreds { 
+    margin : 10px;
+    text-align: center;
+    font-weight: 600;
+    background-color: rgb(236, 86, 86)!important;
+    border: 0px!important;
+    border-radius: 0.5rem!important;
+    
+}
